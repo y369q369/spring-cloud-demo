@@ -8,4 +8,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      # 不开启安全认证的连接
+#      defaultZone: http://localhost:8761/eureka/
+      # 开启安全认证的连接： http://${用户名}:${密码}@localhost:8761/eureka/
+      defaultZone: http://admin:admin@localhost:8761/eureka/,http://admin:admin@localhost:8762/eureka/

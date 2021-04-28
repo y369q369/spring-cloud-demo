@@ -8,22 +8,22 @@ spring:
       password: admin
 
 server:
-  port: 8761
+  port: 8762
 
 eureka:
   instance:
     hostname: localhost
-#  client:
-#    # 单机版的eureka服务置为false
-#    registerWithEureka: false             # 注册到Eureka上
-#    fetchRegistry: false                  # 从Eureka上拉取信息
-#    serviceUrl:
-#      # 单机版的eureka服务地址为当前服务的host和port
-#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  #  client:
+  #    # 单机版的eureka服务置为false
+  #    registerWithEureka: false             # 注册到Eureka上
+  #    fetchRegistry: false                  # 从Eureka上拉取信息
+  #    serviceUrl:
+  #      # 单机版的eureka服务地址为当前服务的host和port
+  #      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   client:
     # 高可用的eureka服务置为true
     registerWithEureka: true            # 注册到Eureka上
     fetchRegistry: true                 # 从Eureka上拉取信息
     serviceUrl:
       # 高可用的eureka服务地址为其他Eureka服务的host和port
-      defaultZone: http://admin:admin@localhost:8762/eureka/
+      defaultZone: http://admin:admin@localhost:8761/eureka/
