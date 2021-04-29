@@ -12,3 +12,17 @@ eureka:
 #      defaultZone: http://localhost:8761/eureka/
       # 开启安全认证的连接： http://${用户名}:${密码}@localhost:8761/eureka/
       defaultZone: http://admin:admin@localhost:8761/eureka/,http://admin:admin@localhost:8762/eureka/
+
+# 指定具体服务的负载均衡策略：当前发现注解优先级高于配置文件
+search:       # 具体服务的名称
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+# feign和hystrix整合内容
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  dashboard:
+    proxyStreamAllowList: localhost

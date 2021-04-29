@@ -1,7 +1,8 @@
 package gs.demo.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import gs.demo.entity.Customer;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.SecureRandom;
 
@@ -13,9 +14,28 @@ import java.security.SecureRandom;
 @RestController
 public class SearchController {
 
+    @Value("${server.port}")
+    private String port;
+
     @GetMapping("search")
     public String search() {
-        return "search : " + String.valueOf(new SecureRandom().nextDouble());
+        int i = 1/0;
+        return "search - " + port + " : " + String.valueOf(new SecureRandom().nextDouble());
+    }
+
+    @GetMapping("/search/{id}")
+    public Customer findById(@PathVariable Integer id) {
+        return new Customer(id, "hh", new SecureRandom().nextInt(50));
+    }
+
+    @GetMapping("/getCustomer")
+    public Customer getCustomer(@RequestParam Integer id, @RequestParam String name) {
+        return new Customer(id, name, new SecureRandom().nextInt(50));
+    }
+
+    @PostMapping("/save")
+    public Customer save(@RequestBody Customer customer) {
+        return customer;
     }
 
 }
