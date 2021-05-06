@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: zuul
+
+server:
+  port: 9004
+
+eureka:
+  client:
+    serviceUrl:
+      # 不开启安全认证的连接
+      #      defaultZone: http://localhost:8761/eureka/
+      # 开启安全认证的连接： http://${用户名}:${密码}@localhost:8761/eureka/
+      defaultZone: http://admin:admin@localhost:8761/eureka/,http://admin:admin@localhost:8762/eureka/
+
+# zuul的配置
+zuul:
+  ignored-services: eureka                # 基于服务名称忽略
+  ignored-patterns: /**/search/**         # 监控页面可看到，但是访问时为404
+  routes:
+    customer: /cs/**                      # 指定访问服务名称
+
+# actuator 监控配置
+management:
+  endpoint:
+  endpoints:
+    web:
+      exposure:
+        include: "*"      # 开发时方便监控设置为*， 生产不用

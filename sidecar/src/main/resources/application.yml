@@ -1,21 +1,20 @@
 spring:
   application:
-    name: search
-  # 连接RabbitMQ的信息
-  rabbitmq:
-    host: 120.26.184.85
-    port: 5672
-    username: test
-    password: 123456
-    virtual-host: /test
+    name: sidecar
+
 
 server:
-  port: 9002
+  port: 9006
 
 eureka:
   client:
     serviceUrl:
       # 不开启安全认证的连接
-#      defaultZone: http://localhost:8761/eureka/
+      #      defaultZone: http://localhost:8761/eureka/
       # 开启安全认证的连接： http://${用户名}:${密码}@localhost:8761/eureka/
       defaultZone: http://admin:admin@localhost:8761/eureka/,http://admin:admin@localhost:8762/eureka/
+
+
+sidecar:
+  # 代理第三方服务的端口，ip为localhost
+  port: 9021
