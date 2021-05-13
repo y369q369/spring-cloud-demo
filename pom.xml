@@ -9,6 +9,7 @@
         <module>eureka2</module>
         <module>zuul</module>
         <module>sidecar</module>
+        <module>config</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
