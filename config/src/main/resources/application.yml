@@ -5,10 +5,11 @@ spring:
     config:
       server:
         git:
-          basedir: E:\project\idea\spring-cloud-demo
-          username: y369q369
-          password: Yq2020.qwe
+#          basedir: E:\project\idea\spring-cloud-demo
+#          username: y369q369
+#          password: Yq2020.qwe
           uri: https://github.com/y369q369/spring-cloud-demo.git
+          search-paths: config-repo
 
 server:
   port: 9007
