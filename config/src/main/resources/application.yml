@@ -6,11 +6,62 @@ spring:
       server:
         git:
           basedir: E:\project\idea\spring-cloud-demo
-          username: y369q369
-          password: Yq2020.qwe
-          uri: https://github.com/y369q369/spring-cloud-demo.git
+          uri: git@github.com:y369q369/spring-cloud-demo.git
+          ignore-local-ssh-settings: true
+          strict-host-key-checking: false
           search-paths: config-repo
-          
+          private-key: |
+            -----BEGIN RSA PRIVATE KEY-----
+            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
+            -----END RSA PRIVATE KEY-----
 
 server:
   port: 9007
