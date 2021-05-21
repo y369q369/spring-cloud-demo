@@ -1,17 +1,17 @@
+version: v1
+
 spring:
   application:
-    name: search
-  # 连接RabbitMQ的信息
-  rabbitmq:
-    host: 120.26.184.85
-    port: 5672
-    username: test
-    password: 123456
-    virtual-host: /test
+    name: customer-${version}
+  cloud:
+    config:
+      discovery:
+        enabled: true           # 开启spring-cloud-config-client
+        service-id: CONFIG      # spring-cloud-config-server的服务名
+      profile: dev              # 实际在server的仓库中寻找的环境： ${服务名}-${profile}.yml, 当前为customer-v1-dev.yml
   sleuth:
     sampler:
       probability: 1            # 百分之多少的sleuth信息需要输出到zipkin中
-
   zipkin:
     base-url: http://120.26.184.85:9411       # 指定zipkin地址
     # zipkin的docker使用rabbitmq：
@@ -19,19 +19,20 @@ spring:
     #               -e RABBIT_ADDRESSES=120.26.184.85:5672 -e RABBIT_USER=test -e RABBIT_PASSWORD=123456 -e RABBIT_VIRTUAL_HOST=/test
     #       openzipkin/zipkin bash
     sender:
-      type: rabbit
-
-
-server:
-  port: 9002
+      type: rabbit        # sleuth发送信息到rabbitmq，zipkin从rabbitmq拉取信息
 
 eureka:
   client:
     serviceUrl:
       # 不开启安全认证的连接
-#      defaultZone: http://localhost:8761/eureka/
+      #      defaultZone: http://localhost:8761/eureka/
       # 开启安全认证的连接： http://${用户名}:${密码}@localhost:8761/eureka/
       defaultZone: http://admin:admin@localhost:8761/eureka/,http://admin:admin@localhost:8762/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 
 logging:

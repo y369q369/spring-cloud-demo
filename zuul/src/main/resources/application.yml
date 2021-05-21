@@ -22,7 +22,6 @@ zuul:
 
 # actuator 监控配置
 management:
-  endpoint:
   endpoints:
     web:
       exposure:

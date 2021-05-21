@@ -21,7 +21,13 @@ spring:
 #            ......
 #            6ihiBlTzhGXC0TEdr4Flhgwy4oYwVEBaI5iEnI+C7oaCHb5/4d+oe1DLK4dp
 #            -----END RSA PRIVATE KEY-----
-
+  # 连接RabbitMQ的信息
+  rabbitmq:
+    host: 120.26.184.85
+    port: 5672
+    username: test
+    password: 123456
+    virtual-host: /test
 
 server:
   port: 9007
@@ -33,3 +39,11 @@ eureka:
       #      defaultZone: http://localhost:8761/eureka/
       # 开启安全认证的连接： http://${用户名}:${密码}@localhost:8761/eureka/
       defaultZone: http://admin:admin@localhost:8761/eureka/,http://admin:admin@localhost:8762/eureka/
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"              # 手动刷新config的接口： ${config节点ip:port}/actuator/bus-refresh
